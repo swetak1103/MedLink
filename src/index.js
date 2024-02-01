@@ -1,15 +1,17 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import Header from "./components/Header";
-import Home from "./components/Home"
-import BedsAvailability from "./components/BedsAvailability";
-import Footer from "./components/Footer";
-import Appointments from "./components/Appointments";
-import AboutUs from "./components/AboutUs";
-import Contact from "./components/Contact";
-import ErrorElement from "./components/ErrorElement";
-import Login from "./components/Login";
+import React, { lazy, Suspense } from "react";
+import ReactDOM from "react-dom";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import Loader from "./components/Loader";
+
+const Header = lazy(() => import("./components/Header"));
+const Home = lazy(() => import("./components/Home"));
+const BedsAvailability = lazy(() => import("./components/BedsAvailability"));
+const Footer = lazy(() => import("./components/Footer"));
+const Appointments = lazy(() => import("./components/Appointments"));
+const Contact = lazy(() => import("./components/Contact"));
+const ErrorElement = lazy(() => import("./components/ErrorElement"));
+const Login = lazy(() => import("./components/Login"));
+const AboutUs = lazy(() => import("./components/AboutUs"));
 
 const AppLayout = () => {
   return (
@@ -21,43 +23,77 @@ const AppLayout = () => {
   );
 };
 
-const appRouter=createBrowserRouter([
+const LoadingFallback = () => (
+  <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
+    <Loader />
+  </div>
+);
+
+const appRouter = createBrowserRouter([
   {
-    path:"/",
-    element:<AppLayout />,
+    path: "/",
+    element: <AppLayout />,
     errorElement: <ErrorElement />,
     children: [
       {
-        path:"/",
-        element:<Home />,
+        path: "/",
+        element: (
+          <Suspense fallback={<LoadingFallback />}>
+            <Home />
+          </Suspense>
+        ),
       },
       {
         path: "/about",
-        element: <AboutUs />,
+        element: (
+          <Suspense fallback={<LoadingFallback />}>
+            <AboutUs />
+          </Suspense>
+        ),
       },
       {
         path: "/contact",
-        element: <Contact />,
+        element: (
+          <Suspense fallback={<LoadingFallback />}>
+            <Contact />
+          </Suspense>
+        ),
       },
       {
-        path:"/beds/:hospid",
-        element:<AboutUs/>,
+        path: "/beds/:hospid",
+        element: (
+          <Suspense fallback={<LoadingFallback />}>
+            <AboutUs />
+          </Suspense>
+        ),
       },
       {
-        path:"/appointments",
-        element:<Appointments />,
+        path: "/appointments",
+        element: (
+          <Suspense fallback={<LoadingFallback />}>
+            <Appointments />
+          </Suspense>
+        ),
       },
       {
-        path:"/beds",
-        element:<BedsAvailability />,
+        path: "/beds",
+        element: (
+          <Suspense fallback={<LoadingFallback />}>
+            <BedsAvailability />
+          </Suspense>
+        ),
       },
       {
-        path:"/login",
-        element:<Login />
-      }
+        path: "/login",
+        element: (
+          <Suspense fallback={<LoadingFallback />}>
+            <Login />
+          </Suspense>
+        ),
+      },
     ],
-  }
-])
+  },
+]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<RouterProvider router={appRouter} />);
