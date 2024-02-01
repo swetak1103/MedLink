@@ -1,100 +1,125 @@
-*{
-    margin: 0;
-    padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 16px;
-}
-footer{
+/* Default styles */
+footer {
     color: white;
     background: #046585;
     padding-top: 50px;
+    width: 100vw;
+    position: sticky;
+    top: 100vh;
+    background-color: #27859f;
 }
-.footer-container{
-    width: 1140px;
+
+.footer-container {
     margin: auto;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
 }
-.footer-content{
-    width: 33.3%;
+
+.footer-content {
+    width: 100%; /* Full width for small screens, will be adjusted in media queries */
+    box-sizing: border-box; /* Include padding and border in the total width */
+    padding: 15px; /* Add padding to each footer content */
 }
-h3{
+
+/* Styles for medium-sized screens */
+@media (min-width: 768px) {
+    .footer-content {
+        width: 50%; /* 2 columns for medium-sized screens */
+    }
+}
+
+/* Styles for larger screens */
+@media (min-width: 992px) {
+    .footer-content {
+        width: 33.3%; /* 3 columns for larger screens */
+    }
+}
+
+/* Rest of your existing styles... */
+footer h3 {
     font-size: 28px;
     margin-bottom: 15px;
     text-align: center;
 }
-.footer-content p{
-    width:190px;
-    margin: auto;
-    padding: 7px;
+
+.footer-content p {
+    text-align: center;
+    line-height: 2em;
 }
-.footer-content ul{
+
+.footer-content ul {
     text-align: center;
 }
-.list{
+
+.list {
     padding: 0;
 }
-.list li{
+
+.list li {
     width: auto;
     text-align: center;
-    list-style-type:none;
+    list-style-type: none;
     padding: 7px;
     position: relative;
 }
-.list li::before{
+
+.list li::before {
     content: '';
     position: absolute;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     left: 50%;
     top: 100%;
     width: 0;
     height: 2px;
-    background:red;
+    background: red;
     transition-duration: .5s;
 }
-.list li:hover::before{
+
+.list li:hover::before {
     width: 70px;
 }
-.social-icons{
+
+.social-icons {
     text-align: center;
     padding: 0;
 }
-.social-icons li{
+
+.social-icons li {
     display: inline-block;
     text-align: center;
     padding: 5px;
 }
-.social-icons i{
+
+.social-icons i {
     color: white;
     font-size: 25px;
 }
-footer a{
+
+footer a {
     text-decoration: none;
     color: white;
 }
-a:hover{
+
+a:hover {
     color: red;
 }
-.social-icons i:hover{
+
+.social-icons i:hover {
     color: red;
     color: white;
 }
-.bottom-bar{
+
+.bottom-bar {
     background: #27859f;
     text-align: center;
     padding: 10px 0;
     margin-top: 50px;
 }
-.bottom-bar p{
+
+.bottom-bar p {
     color: #343434;
     margin: 0;
     font-size: 16px;
     padding: 7px;
-}
-footer{
-    margin: 0px;
-    position: absolute;
-    width: 100vw;
-    color: white;
-    top: 130vh;
 }
