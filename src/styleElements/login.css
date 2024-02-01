@@ -1,0 +1,81 @@
+/* * {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Poppins', sans-serif;
+} */
+#ramb {
+    display: flex;
+}
+#ram {
+    background-color: #1a8db4;
+    height: 100vh;
+    width: 50vw;
+}
+#shyam {
+    background-color: aliceblue;
+    height: 100vh;
+    width: 50vw;
+}
+#krishna {
+    height: 100vh;
+    background-color: azure;
+    margin-top: 0vh;
+    margin-left: 16vw;
+    display: flex;
+    align-items: top;
+    justify-content: center;
+}
+#medlink {
+    height: 11vw;
+}
+#login {
+    margin-top: 0vh;
+    height: 100vh;
+    width: 34vw;
+}
+#ram h2 {
+    justify-content: center;
+    padding-left: 7vw;
+    margin-left: 1.3vw;
+}
+#ram input {
+    margin-top: 0px;
+    margin-left: 3vw;
+    font-size: medium;
+    text-align: center;
+}
+#ram label {
+    margin-left: 3vw;
+}
+#userid, #password, #Cpassword {
+    width: 80%;
+}
+#ram button {
+    margin-left: 6vw;
+    margin-top: 1vh;
+    justify-content: center;
+}
+#show {
+    margin-top: 5px;
+    cursor: pointer;
+}
+#showLabel {
+    display: flex;
+    align-items: center;
+}
+#show{
+    position: relative;
+    right: 65px;
+}
+#showC{
+    position: relative;
+    right: 65px;
+}
+.gen{
+    display: inline;
+    margin-left: 50px;
+    font-size:medium;
+}
+#ram h4{
+    display: inline;
+}
