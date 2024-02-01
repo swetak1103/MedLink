@@ -2,11 +2,11 @@ import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Loader from "./components/Loader";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
-const Header = lazy(() => import("./components/Header"));
 const Home = lazy(() => import("./components/Home"));
 const BedsAvailability = lazy(() => import("./components/BedsAvailability"));
-const Footer = lazy(() => import("./components/Footer"));
 const Appointments = lazy(() => import("./components/Appointments"));
 const Contact = lazy(() => import("./components/Contact"));
 const ErrorElement = lazy(() => import("./components/ErrorElement"));
@@ -24,7 +24,14 @@ const AppLayout = () => {
 };
 
 const LoadingFallback = () => (
-  <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
+  <div
+    style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "100vh",
+    }}
+  >
     <Loader />
   </div>
 );
