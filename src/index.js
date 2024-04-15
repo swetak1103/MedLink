@@ -4,7 +4,6 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Loader from "./components/Loader";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-
 const Home = lazy(() => import("./components/Home"));
 const BedsAvailability = lazy(() => import("./components/BedsAvailability"));
 const Appointments = lazy(() => import("./components/Appointments"));
@@ -12,7 +11,7 @@ const Contact = lazy(() => import("./components/Contact"));
 const ErrorElement = lazy(() => import("./components/ErrorElement"));
 const Login = lazy(() => import("./components/Login"));
 const AboutUs = lazy(() => import("./components/AboutUs"));
-
+const Signup= lazy(()=>import("./components/Signup"));
 const AppLayout = () => {
   return (
     <>
@@ -30,6 +29,7 @@ const LoadingFallback = () => (
       justifyContent: "center",
       alignItems: "center",
       height: "100vh",
+    
     }}
   >
     <Loader />
@@ -95,6 +95,14 @@ const appRouter = createBrowserRouter([
         element: (
           <Suspense fallback={<LoadingFallback />}>
             <Login />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/signup",
+        element: (
+          <Suspense fallback={<LoadingFallback />}>
+            <Signup />
           </Suspense>
         ),
       },
