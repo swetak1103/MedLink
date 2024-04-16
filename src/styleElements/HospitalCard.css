@@ -1,0 +1,27 @@
+.hospital-card {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5) inset; 
+    padding: 10px; 
+    margin-bottom: 20px;
+    width: 300px; 
+    max-height: 200px; 
+    overflow: auto;
+  }
+  
+  .hospital-card h2 {
+    color: #333333;
+    font-size: 18px;
+    margin-bottom: 5px; 
+  }
+  
+  .hospital-card p {
+    color: #666666;
+    margin-bottom: 5px; 
+  }
+  
+  .hospital-card strong {
+    font-weight: bold;
+  }
+  
