@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Loader from "./components/Loader";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import HospitalPage from "./components/HospitalPage";
 
 const Home = lazy(() => import("./components/Home"));
 const BedsAvailability = lazy(() => import("./components/BedsAvailability"));
@@ -67,14 +68,6 @@ const appRouter = createBrowserRouter([
         ),
       },
       {
-        path: "/beds/:hospid",
-        element: (
-          <Suspense fallback={<LoadingFallback />}>
-            <AboutUs />
-          </Suspense>
-        ),
-      },
-      {
         path: "/appointments",
         element: (
           <Suspense fallback={<LoadingFallback />}>
@@ -83,10 +76,18 @@ const appRouter = createBrowserRouter([
         ),
       },
       {
-        path: "/beds",
+        path: "/hospital",
         element: (
           <Suspense fallback={<LoadingFallback />}>
             <BedsAvailability />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/hospital/beds/:location",
+        element: (
+          <Suspense fallback={<LoadingFallback />}>
+            <HospitalPage />
           </Suspense>
         ),
       },

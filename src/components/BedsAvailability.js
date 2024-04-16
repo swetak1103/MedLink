@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const BedsAvailability = () => {
   const [selectedState, setSelectedState] = useState('');
@@ -27,9 +28,10 @@ const BedsAvailability = () => {
     const newCity = event.target.value;
     setSelectedCity(newCity);
   };
-
+  // let url="/hospital/beds/"
   const handleSubmit = () => {
-// later
+    // useH
+    // url+=selectedCity;
   };
 
   return (
@@ -50,9 +52,11 @@ const BedsAvailability = () => {
       </select>
 
       <div style={{ padding: '10px auto' }}>
+      <Link to={`/hospital/beds/${selectedCity}`}>
         <button className="btn btn-primary btn-md" style={{ padding: '8px 15px', margin: '25px 190px', color: 'white', textDecoration: 'none' }} onClick={handleSubmit}>
           Submit
         </button>
+      </Link>
       </div>
     </div>
   );
