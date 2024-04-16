@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import loginImage from '../utils/img/login.jpg';
 import "../styleElements/signup.css";
 import { useNavigate } from 'react-router-dom';
+import { AiFillEye } from 'react-icons/ai';
+import { AiFillEyeInvisible } from 'react-icons/ai';
+
 const Signup = () => {
   const [name, setName] = useState('');
   const [mobileOrEmail, setMobileOrEmail] = useState('');
@@ -10,7 +13,8 @@ const Signup = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-const navigate=useNavigate();
+  const navigate = useNavigate();
+
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -21,8 +25,6 @@ const navigate=useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Add your form submission logic here
-    // You can access the form values using the state variables (name, mobileOrEmail, etc.)
     let loginuserid = document.getElementById("loginuserid").value;
     let pass = document.getElementById("loginpassword").value;
     let passwordInput = document.getElementById("loginCpassword").value;
@@ -51,8 +53,8 @@ const navigate=useNavigate();
     } else {
         alert("Response submitted");
         navigate("/");
-  }
-};
+    }
+  };
 
   return (
     <div id="loginfull">
@@ -99,7 +101,6 @@ const navigate=useNavigate();
               onChange={(e) => setDateOfBirth(e.target.value)}
             />
             <br /><br />
-
             <label htmlFor="loginpassword" className="loginlabel">Create Password</label>
             <br />
             <br/>
@@ -114,7 +115,11 @@ const navigate=useNavigate();
                 onChange={(e) => setPassword(e.target.value)}
               />
               <label htmlFor="loginshow" className="loginlabel" onClick={togglePasswordVisibility}>
-                <input type="checkbox" id="loginshow" className="logininput" />
+              <button id='passBtn' type='button' >
+                {
+                  showPassword ? (<AiFillEye/>) : (<AiFillEyeInvisible/>)
+                }
+              </button>
               </label>
             </div>
             <br />
@@ -131,7 +136,11 @@ const navigate=useNavigate();
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
               <label htmlFor="loginshowC" className="loginlabel" onClick={toggleConfirmPasswordVisibility}>
-                <input type="checkbox" id="loginshowC" className="logininput" />
+                <button id='passBtn' type='button' >
+                {
+                  showConfirmPassword ? (<AiFillEye/>) : (<AiFillEyeInvisible/>)
+                }
+              </button>
               </label>
             </div>
             <br />
