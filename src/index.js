@@ -17,23 +17,6 @@ const Login = lazy(() => import("./components/Login"));
 const AboutUs = lazy(() => import("./components/AboutUs"));
 const Signup= lazy(()=>import("./components/Signup"));
 const AppLayout = () => {
-  return (
-    <>
-      <Header />
-      <Outlet />
-      <Footer />
-    </>
-  );
-};
-  const Home = lazy(() => import("./components/Home"));
-  const BedsAvailability = lazy(() => import("./components/BedsAvailability"));
-  const Appointments = lazy(() => import("./components/Appointments"));
-  const Contact = lazy(() => import("./components/Contact"));
-  const ErrorElement = lazy(() => import("./components/ErrorElement"));
-  const Login = lazy(() => import("./components/Login"));
-  const AboutUs = lazy(() => import("./components/AboutUs"));
-
-  const AppLayout = () => {
     return (
       <>
         <Header />
