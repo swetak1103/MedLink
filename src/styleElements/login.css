@@ -1,16 +1,16 @@
-/* * {
+/* /* * {
     margin: 0px;
     padding: 0px;
     font-family: 'Poppins', sans-serif;
 } */
-#ramb {
+/* #ramb {
     display: flex;
-}
-#ram {
-    background-color: #1a8db4;
-    height: 100vh;
-    width: 50vw;
-}
+} */
+/* #ram { */
+    /* background-color: #1a8db4; */
+    /* height: 100vh;
+    width: 50vw; */
+/* }
 #shyam {
     background-color: aliceblue;
     height: 100vh;
@@ -78,4 +78,393 @@
 }
 #ram h4{
     display: inline;
+} */
+#loginleft {
+    background-color: #1a8db4;
+    height: 80vh;
+    width: 50vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  /* flex-wrap: wrap; */
+}
+#loginright {
+    background-color: aliceblue;
+    height: 80vh;
+    width: 50vw;
+}
+#account{
+    text-align: center;
+    font-size: x-large;
+}
+#loginright img{
+    height: 80vh;
+    margin-top: 0px;
+}
+#loginmainleft {
+    /* flex-grow:1.5;*/
+     height: 80vh;
+     width: 34vw;
+     margin-left: 16vw;
+    /* width:60vw; */
+    background-color: azure;
+    /* margin-top: 11vh; */
+    /* margin-left: 16vw; */
+    display: flex;
+    align-items: top;
+    justify-content: center;
+
+    box-sizing: border-box;
+}
+#medlink {
+    height: 15vh;
+    width: 100%;
+    display: flex;
+    text-align: center;
+    align-items: center;
+   
+}
+#medlink img {
+    margin-left: 5vw;
+    height: 100%;
+}
+#ima {
+    width: 100%;
+}
+#login {
+    margin-top: 11vh;
+    height: 58vh;
+    width: 34vw;
+}
+.loginlabel{
+  
+    position: absolute;
+}
+#passBtn{
+    position: relative;
+    left: -10vw;
+}
+h1 {
+    justify-content: center;
+    padding-left: 7vw;
+    margin-left: 1.3vw;
+}
+input {
+       margin-left: 2vw;
+    font-size: x-large;
+color: black;
+    text-align: center; /* Center-align text within the input field */
+padding-left: 2vw;
+
+}
+label {
+    margin-left:2vw;
+    font-size: x-large;
+}
+#userid{
+/* width: 300px; */
+}
+button{
+    margin-left: 6vw;
+    margin-top: 1vh;
+    justify-content: center;
+    /* position: ; */
+}
+#show{
+/* margin-top: 20px; */
+position: relative;
+    right: 90px;
+}
+#or{
+    margin-left: 8vw;
+}
+
+i{
+    position: relative;
+    right: 65px;
+    z-index: 2;
+    top: 6px;
+}
+span{
+    position: relative;
+    right: 5vw;
+    z-index: 2;
+    top: 4px;
+}
+
+#main{
+    display: flex;
+}
+
+  #or{
+    font-size: x-large;
+    display: block;
+ text-align: center;
+ margin-left: 1px;
+  }
+h2{
+justify-content: center;
+margin-left: 3.7vw;
+
+margin-top: 0px;
+margin-bottom: 0px;
+}
+
+
+
+#loginshow{
+position: relative;
+        right:15.8vw;
+   }
+#loginsignup{
+        margin-left: 0vw;
+        padding-left: 0px;
+        margin-top: 1vh;
+        justify-content: left;
+        text-align: center;
+        font-size: xx-large;
+        font-weight:600;
+    }
+#heart{
+margin-top: 3vh;
+margin-left: 21vw;
+height: 5vh;
+width: 5vh;
+background-color: red;
+transform: rotate(45deg);
+position: relative;
+animation: heartbeat 1s infinite;
+
+}
+#loginbutton{
+        margin-left: 41%;
+        margin-top: 9vh;
+        margin-bottom: -1vh;
+   }
+#heart::after,
+#heart::before{
+content: '';
+height:5vh;
+width: 5vh;
+position: absolute
+;
+border-radius: 50%;
+background-color:red;
+}
+#heart::after{
+top:-2vh;
+right: 0;
+}
+#heart::before{
+top: 0;
+left: -2vh;
+}
+@keyframes heartbeat{
+0%{
+    transform: scale(1) rotate(45deg);
+}
+50%{
+    transform: scale(1.2)  rotate(45deg);
+}
+100%{
+    transform: scale(1)  rotate(45deg);
+}
+}
+
+@media(max-width:570px){
+    #medlink{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    #main{
+        margin-top: 10vh;
+    }
+    .logininput{
+        margin-left: 0vw;
+   }
+   #loginright{
+        display: none;
+   }
+   #loginleft{
+        width:100vw;
+      
+   }
+   label{
+    width: 100%;
+    text-align: center;
+   }
+   
+   #loginmainleft{
+        margin-top:0px;
+      margin-left:0px ;
+        height: 100vh;
+width: 100vw;
+   }
+   #myloginForm{
+    margin-left: 0px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+       
+   }
+   .loginlabel{
+       /* margin-left: 212px; */
+       width: 10px;
+        position:relative;
+        display: flex;
+        flex-direction: row;
+       
+   }
+  #loginpassword{
+    margin-left: -100px;
+  }
+   #or{
+        margin-left:39%;
+   }
+   #loginbutton{
+        margin-left: 30%;
+   }
+  
+   .loginimage{
+        margin-left: 11%;            
+   }
+   #loginmedlink{
+        margin-top: -2vh;
+        height: 25vw;
+        margin-left: 1vw;  
+   }
+   #loginshow{
+        right:22.8vw;
+       top: -0.5vw;
+   }
+   #loginshowC{
+        right: 3.8vw;
+   }
+   #loginuserid, #loginpassword, #loginCpassword {
+ width: 61vw;
+}
+#loginsignup{
+        margin-left: -1vw;
+        padding-left: 0px;
+        margin-top: 1vh;
+        justify-content: left;
+        text-align: center;
+        font-size: xx-large;
+        font-weight:600;
+        margin-bottom: -1vh;
+    }
+   
+    input{
+        /* margin-left: 15vw; */
+        border-bottom: 1px solid black;
+        margin-bottom: 10px;
+    }
+    label{
+       
+        font-size: 15px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+  #heart{
+    margin-left:45vw;
+  }
+       
+ 
+  #or{
+    font-size: x-large;
+    display: block;
+ text-align: center;
+ margin-left: -10px;
+  }
+  #loginbutton{
+    margin-left: 38vw;
+  }
+  #passBtn{
+    left: -2vw;
+  }
+}
+
+
+
+@media (max-width: 1030px) and (min-width: 571px) {
+    #loginleft{
+        max-width: 50vw;
+        flex-wrap: wrap;
+    }
+    #loginlink{max-width: 15vw;
+    z-index: 1;
+    }
+    #medlink{
+        height: 150px;
+        width: 10px;
+    }
+    #medlink img{
+       margin-left: 0;
+    }
+    img#hospital {
+        height: 150px;
+
+    }
+    #loginpassword{
+        margin-top: 0.5vh;
+        /* position:absolute; */
+        z-index: 1
+    }
+    #loginsignup{
+        margin-left: 0vw;
+        padding-left: 0px;
+        margin-top: 1vh;
+        justify-content: left;
+        text-align: center;
+        font-size: x-large;
+        font-weight:600;
+    }
+    #passBtn{
+        display: inline;
+        z-index: 10;
+
+    }
+    #loginpassword{
+        display: inline;
+    }
+    #loginmedlink{
+        margin-left: 6vw;
+        margin-top: -2vh;
+        height: 11vw;
+    }
+    .logininput{
+        font-size: medium;
+        margin-left: 2vw;
+    }
+    #loginmainleft{
+        max-width:45vw;
+        width: 45vw;
+    }
+    #loginuserid, #logininput, #loginpassword, #loginCpassword {
+ width: 25vw;
+}
+#loginpassword{
+    padding-bottom: 10px;
+}
+#loginshow{
+    top: 0.3vh;
+        right:4.9vw;
+   }
+   #loginshowC{
+    top:0.1vh;
+        right: 4.9vw;
+   }
+   #loginbutton{
+        margin-left: 30%;
+   }
+   #myloginForm{
+    /* width:em ; */
+   }
+   label{
+    font-size: large;
+   }
 }
