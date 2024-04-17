@@ -14,7 +14,7 @@ const Contact = lazy(() => import("./components/Contact"));
 const ErrorElement = lazy(() => import("./components/ErrorElement"));
 const Login = lazy(() => import("./components/Login"));
 const AboutUs = lazy(() => import("./components/AboutUs"));
-
+const Signup = lazy(() => import("./components/Signup"));
 const AppLayout = () => {
   return (
     <>
@@ -101,7 +101,14 @@ const appRouter = createBrowserRouter([
           </Suspense>
         ),
       },
-      
+      {
+        path: "/signup",
+        element: (
+          <Suspense fallback={<LoadingFallback />}>
+            <Signup />
+          </Suspense>
+        ),
+      },
     ],
   },
 ]);

@@ -1,35 +1,38 @@
-import React, { useState, useEffect} from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import HospitalList from './HospitalList';
+import "../styleElements/hospitalpage.css";
+import HospitalDetails from './HospitalDetails';
 
 const HospitalPage = () => {
-    const {location}=useParams();
-    const [hospitalData, setHospitalData] = useState([]);
+    const { location } = useParams();
+    const [list, setList] = useState([]);
 
     useEffect(() => {
-      const fetchHospitalData = async () => {
-          try {
-              const response = await fetch('/MedLink/hospitals.json'); 
+        const fetchHospitalData = async () => {
+            try {
+              const response = await fetch(`/hospitals/${location}`);
               const data = await response.json();
+              setList(data);
               console.log(data);
-              
-              const filteredHospitals = data.filter(hospital => hospital.location === location);
-              setHospitalData(filteredHospitals);
-          } catch (error) {
-              console.error('Error fetching hospital data:', error);
-          }
-      };
+            } catch (error) {
+                console.error('Error fetching hospital data:', error);
+            }
+        };
+        fetchHospitalData();
+    }, [location]);
 
-      fetchHospitalData();
-  }, [location]);
-  return (
+    return (
         <div>
-        <h2>Hospital List</h2>
-        <p>Location: {location}</p>
-        <HospitalList hospitals={hospitalData} />
-        {/* Fetch and display hospital list based on the location parameter */}
-      </div>
+            {/* <h2>Hospital List</h2> */}
+            <p style={{marginLeft:"15px", fontSize: '20px', fontWeight: 'bold' }}>Location: {location}</p>
+            <div style={{display:"flex"}}>
+            {list.map((hospital) => (
+                <HospitalDetails key={hospital.id} {...hospital} />
+            ))
+            }
+            </div>
+        </div>
     );
-}
+};
 
 export default HospitalPage;
