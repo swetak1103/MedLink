@@ -1,12 +1,10 @@
-  import React, { lazy, Suspense } from "react";
-  import ReactDOM from "react-dom";
-  import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-  import Loader from "./components/Loader";
-  import Header from "./components/Header";
-  import Footer from "./components/Footer";
-  import HospitalPage from "./components/HospitalPage";
-  import { LoginContext, LoginContextProvider } from "./LoginContext";
-
+import React, { lazy, Suspense } from "react";
+import ReactDOM from "react-dom";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import Loader from "./components/Loader";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import HospitalPage from "./components/HospitalPage";
 
 const Home = lazy(() => import("./components/Home"));
 const BedsAvailability = lazy(() => import("./components/BedsAvailability"));
@@ -15,29 +13,29 @@ const Contact = lazy(() => import("./components/Contact"));
 const ErrorElement = lazy(() => import("./components/ErrorElement"));
 const Login = lazy(() => import("./components/Login"));
 const AboutUs = lazy(() => import("./components/AboutUs"));
-const Signup= lazy(()=>import("./components/Signup"));
+const Signup = lazy(() => import("./components/Signup"));
 const AppLayout = () => {
-    return (
-      <>
-        <Header />
-        <Outlet />
-        <Footer />
-      </>
-    );
-  };
+  return (
+    <>
+      <Header />
+      <Outlet />
+      <Footer />
+    </>
+  );
+};
 
 const LoadingFallback = () => (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-      }}
-    >
-      <Loader />
-    </div>
-  );
+  <div
+    style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "100vh",
+    }}
+  >
+    <Loader />
+  </div>
+);
 
 const appRouter = createBrowserRouter([
   {
@@ -109,15 +107,9 @@ const appRouter = createBrowserRouter([
           </Suspense>
         ),
       },
-      
     ],
   },
 ]);
 
-
-  const root = ReactDOM.createRoot(document.getElementById("root"));
-  root.render(
-    <LoginContextProvider>
-      <RouterProvider router={appRouter} />
-    </LoginContextProvider>
-  );
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<RouterProvider router={appRouter} />);
