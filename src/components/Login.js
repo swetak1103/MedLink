@@ -23,7 +23,7 @@ const Login = () => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Add login logic here
     
@@ -51,12 +51,36 @@ const Login = () => {
     } else if (pass === "") {
         alert("Enter password");
     } 
-    else if(a!=1 || b!=1 || c!=1){
-        alert("password should contain one capital one small and one special character atleast");
-    }
         else {
         alert("Response submitted");
         navigate("/");
+    }
+    try {
+      const response = await fetch('/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
+
+      if (response.ok) {
+        const {token}=await response.json();
+        localStorage.setItem('logintoken', token);
+        navigate('/');
+      } else {
+        // Unsuccessful login
+        // Display an error message
+        const data = await response.json();
+        console.error(data.message); 
+        alert('Login failed. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('An error occurred. Please try again later.');
     }
   };
   return (

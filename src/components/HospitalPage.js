@@ -23,13 +23,14 @@ const HospitalPage = () => {
 
     return (
         <div>
-            <h2>Hospital List</h2>
-            <p>Location: {location}</p>
-            {/* /Fetch and display hospital list based on the location parameter */}
+            {/* <h2>Hospital List</h2> */}
+            <p style={{marginLeft:"15px", fontSize: '20px', fontWeight: 'bold' }}>Location: {location}</p>
+            <div style={{display:"flex"}}>
             {list.map((hospital) => (
                 <HospitalDetails key={hospital.id} {...hospital} />
             ))
             }
+            </div>
         </div>
     );
 };

@@ -21,7 +21,7 @@ const Signup = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     let loginuserid = document.getElementById("loginuserid").value;
     let pass = document.getElementById("loginpassword").value;
@@ -50,9 +50,39 @@ const Signup = () => {
         alert("Name cannot contain special characters");
     } else {
         alert("Response submitted");
-        navigate("/");
+        // navigate("/");
     }
-  };
+    try {
+      const data = {
+        firstname,
+        lastname,
+        email,
+        password,
+      };
+      const response = await fetch("/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        const {token}=await response.json();
+        console.log(token);
+        localStorage.setItem('logintoken', token);
+        navigate("/");
+      } else {
+        // Handle error response
+        const errorData = await response.json();
+        console.error("Error:", errorData.message);
+        alert("An error occurred. Please try again later.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("An error occurred. Please try again later.");
+    }
+  }
 
   return (
     <div id="loginfull">

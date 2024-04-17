@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "../styleElements/appoitment.css";
+import { useNavigate } from 'react-router-dom';
 
 const Appointments = () => {
   const [formData, setFormData] = useState({
@@ -19,10 +20,20 @@ const Appointments = () => {
     });
   };
 
+  const navigate = useNavigate();
+  useEffect(() => {
+    // Check if login token is found in local storage
+    const token = localStorage.getItem('logintoken');
+    if (!token) {
+      navigate('/login');
+    }
+  }, [navigate]);
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
-    // Add your logic to submit the form data
+    //TODO: Add your logic to submit the form data
   };
 
   return (

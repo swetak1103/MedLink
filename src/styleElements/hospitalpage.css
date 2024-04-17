@@ -1,4 +1,4 @@
 footer{
-    position: absolute;
-    top:100%;
+    position: relative;
+    top:50%;
 }
