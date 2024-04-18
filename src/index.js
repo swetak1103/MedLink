@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import HospitalPage from "./components/HospitalPage";
 
+
 const Home = lazy(() => import("./components/Home"));
 const BedsAvailability = lazy(() => import("./components/BedsAvailability"));
 const Appointments = lazy(() => import("./components/Appointments"));
@@ -20,6 +21,7 @@ const AppLayout = () => {
       <Header />
       <Outlet />
       <Footer />
+     
     </>
   );
 };
