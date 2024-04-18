@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import "../styleElements/hospitalpage.css";
 import HospitalDetails from './HospitalDetails';
-
-import hospitals from "./hospitals.json"
 
 const HospitalPage = () => {
     const { location } = useParams();
@@ -11,7 +10,10 @@ const HospitalPage = () => {
     useEffect(() => {
         const fetchHospitalData = async () => {
             try {
-              setList(hospitals);
+              const response = await fetch(`/hospitals/${location}`);
+              const data = await response.json();
+              setList(data);
+              console.log(data);
             } catch (error) {
                 console.error('Error fetching hospital data:', error);
             }
@@ -21,11 +23,13 @@ const HospitalPage = () => {
 
     return (
         <div>
+            {/* <h2>Hospital List</h2> */}
             <p style={{marginLeft:"15px", fontSize: '20px', fontWeight: 'bold' }}>Location: {location}</p>
-            <div style={{display:"flex", flexWrap: 'wrap'}}>
-                {list.map((hospital, index) => (
-                    <HospitalDetails key={index} {...hospital} />
-                ))}
+            <div style={{display:"flex"}}>
+            {list.map((hospital) => (
+                <HospitalDetails key={hospital.id} {...hospital} />
+            ))
+            }
             </div>
         </div>
     );
