@@ -1,19 +1,21 @@
 import React, { useState } from "react";
 import "../styleElements/contactus.css";
+import { useNavigate } from "react-router-dom";
 
 const Contact = () => {
+  const navigate=useNavigate();
   const [fullName,setFullName]=useState('');
   const [email,setEmail]=useState('');
   const [message,setMessage]=useState('');
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if(fullName=='') {
+    if(fullName==='') {
       alert("full name cannot be empty");
     }
-    else if(email==''){
+    else if(email===''){
       alert("email cannot be empty");
     }
-    else if(message==''){
+    else if(message===''){
       alert("message cannot be empty");
     }
     else{
