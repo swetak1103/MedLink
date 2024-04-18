@@ -2,10 +2,9 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import img from "../utils/img/h1.jpeg";
-// import 'bootstrap/dist/css/bootstrap.min.css';
+
 const HospitalDetails = (props) => {
-  const { name, address, contactInfo, beds } = props;
-  console.log(name);
+  const { name, address, location, beds, contact_info } = props;
 
   return (
     <Card style={{ width: "18rem", margin: "10px" }}>
@@ -13,24 +12,12 @@ const HospitalDetails = (props) => {
       <Card.Body>
         <Card.Title>{name}</Card.Title>
         <Card.Text>{address}</Card.Text>
-        <Card.Text>BedsAvailability: {beds}</Card.Text>
-        <Button variant="primary">{contactInfo}</Button>
+        <Card.Text>Beds Availability: {beds}</Card.Text>
+        <Button variant="primary">{contact_info}</Button>
+        <Card.Text>{location}</Card.Text>
       </Card.Body>
     </Card>
   );
-
-  // return (
-  //     <div style={{
-  //         background:"blue",
-  //         margin:"10px",
-  //     }}>
-  //         <h1>{name}</h1>
-  //         <h1>{address}</h1>
-  //         <h1>{location}</h1>
-  //         <h1>{beds}</h1>
-  //         <h1>{contactInfo}</h1>
-  //     </div>
-  // );
 };
 
 export default HospitalDetails;
