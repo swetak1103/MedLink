@@ -5,6 +5,7 @@ import Loader from "./components/Loader";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import HospitalPage from "./components/HospitalPage";
+import AppoitmentTable from "./components/AppoitmentTable";
 
 const Home = lazy(() => import("./components/Home"));
 const BedsAvailability = lazy(() => import("./components/BedsAvailability"));
@@ -56,6 +57,14 @@ const appRouter = createBrowserRouter([
         element: (
           <Suspense fallback={<LoadingFallback />}>
             <AboutUs />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/patient",
+        element: (
+          <Suspense fallback={<LoadingFallback />}>
+            <AppoitmentTable />
           </Suspense>
         ),
       },

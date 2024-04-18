@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "../styleElements/home.css";
 import headerbg from "../utils/img/header-bg.png"; 
 
@@ -26,9 +27,9 @@ const Home = () => {
               <button className="btn">Find Hospital Beds</button>
               <button className="btn">Consult Online</button>
               <button className="btn">
-                <a style={{ color: 'white' }} href="patient.html">
+                <Link  to="/patient" style={{ color: 'white' }} href="patient.html">
                   View Health Records
-                </a>
+                </Link>
               </button>
               <button className="btn">Buy Medicines</button>
             </div>
