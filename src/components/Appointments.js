@@ -7,7 +7,7 @@ const Appointments = () => {
       <div className="container">
         <h1>Book an Appointment</h1>
         <form id="appointmentForm">
-          <div className="form-group">
+          <div className="form-group">a
             <label htmlFor="fullName">Full Name:</label>
             <input type="text" id="fullName" name="fullName" required style={{ color: 'black' }} />
           </div>
