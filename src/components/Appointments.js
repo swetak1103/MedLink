@@ -65,8 +65,8 @@ const Appointments = () => {
     <div className="parent">
       <div className="container">
         <h1>Book an Appointment</h1>
-        <form id="appointmentForm" onSubmit={handleSubmit}>
-          <div className="form-group">
+        <form id="appointmentForm">
+          <div className="form-group">a
             <label htmlFor="fullName">Full Name:</label>
             <input
               type="text"
