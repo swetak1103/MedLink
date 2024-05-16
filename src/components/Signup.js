@@ -1,22 +1,21 @@
-import React, { useState,useEffect } from 'react';
-import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
-import loginImage from '../utils/img/login.jpg';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 import doctor from "../utils/img/header-bg.png";
-import { useRef } from 'react';
-import { toast } from 'react-hot-toast';
-
+import { toast } from "react-hot-toast";
 
 const Signup = () => {
-  const navigate=useNavigate();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
- 
+  const [otps, setOtps] = useState(false);
+  const [otp, setOtp] = useState("");
+  const [clicked, setClicked] = useState(true);
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -28,20 +27,26 @@ const Signup = () => {
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
-      
 
-
-     /// Empty dependency array ensures this effect runs only once after initial render
-      
-   
-   
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
 
+  const setQueryParams = (params) => {
+    const url = new URL(window.location);
+    Object.keys(params).forEach((key) =>
+      url.searchParams.set(key, params[key])
+    );
+    window.history.pushState({}, "", url);
+  };
+
   const handleSubmit = async (event) => {
+    const params = {
+      email,
+      otp,
+    };
+    setQueryParams(params);
     event.preventDefault();
-  
     if (firstName === "") {
       toast.error("Enter first name");
     } else if (email === "") {
@@ -54,30 +59,26 @@ const Signup = () => {
       toast.error("Password and confirm password are not matching");
     } else {
       try {
-        const data = {
-          firstName, // Corrected from firstname
-          lastName,
-          email,
-          password,
-        };
-        const response = await fetch("/signup", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        });
-  
-        if (response.ok) {
-          const { token } = await response.json();
+        const response = await fetch(
+          `/verify-account?email=${email}&otp=${otp}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        const json = await response.json();
+        const { token, message, status } = json || "";
+
+        if (status === 200) {
           console.log(token);
           localStorage.setItem("logintoken", token);
           navigate("/");
         } else {
-          // Handle error response
-          const errorData = await response.json();
-          console.error("Error:", errorData.message);
-          toast.error("An error occurred. Please try again later.");
+          console.error("Error:", message);
+          toast.error(message);
         }
       } catch (error) {
         console.error("Error:", error);
@@ -85,15 +86,46 @@ const Signup = () => {
       }
     }
   };
-  
+
+  const signUp = async () => {
+    try {
+      const data = {
+        firstName,
+        lastName,
+        email,
+        password,
+      };
+      const response = await fetch("/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      const responseJson = await response.json();
+      if (responseJson.status != 200) {
+        toast.error(responseJson.message);
+      } else {
+        setClicked(false);
+        setOtps(true);
+      }
+      console.log(responseJson);
+    } catch (error) {
+      console.error("Error:", error);
+      toast.error(error);
+    }
+  };
+
   return (
     <div>
       <section className="bg-gray-50 h-[80vh] flex items-center justify-center">
         <div className="bg-gray-100 flex rounded-2xl shadow-lg max-w-3xl p-5 items-center">
           <div className="md:w-[55vw] px-8 md:px-16">
-            <h2 className="font-bold mx-[70px] text-3xl text-[#002D74]">Signup</h2>
+            <h2 className="font-bold mx-[70px] text-3xl text-[#002D74]">
+              Signup
+            </h2>
             <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-             <br></br>
+              <br></br>
               <input
                 type="text"
                 id="firstname"
@@ -139,32 +171,78 @@ const Signup = () => {
                   value={password}
                   onChange={handlePasswordChange}
                 />
-                <label htmlFor="loginshow" className="loginlabel mt-[-100px]" onClick={togglePasswordVisibility}>
-                  <button className='mt-[-100px] mx-[-19px]' id='passBtn' type='button' >
+                <label
+                  htmlFor="loginshow"
+                  className="loginlabel mt-[-100px]"
+                  onClick={togglePasswordVisibility}
+                >
+                  <button
+                    className="mt-[-100px] mx-[-19px]"
+                    id="passBtn"
+                    type="button"
+                  >
                     {showPassword ? <AiFillEye /> : <AiFillEyeInvisible />}
                   </button>
                 </label>
               </div>
-              <div className='loginlabel'>
+              <div className="loginlabel">
                 <input
                   type={showConfirmPassword ? "text" : "password"}
                   id="loginCpassword"
                   placeholder="Confirm Password"
-                  className="logininput                    w-[15vw]
-                   text-black rounded-lg px-1 h-8 w-[15vw]"
-                  name='confirmpassword'
+                  className="logininput w-[15vw] text-black rounded-lg px-1 h-8"
+                  name="confirmpassword"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                 />
-                <label htmlFor="loginshowC" className="loginlabel" onClick={toggleConfirmPasswordVisibility}>
-                  <button className=' mx-[-19px]' id='passBtn' type='button' >
-                    {showConfirmPassword ? (<AiFillEye/>) : (<AiFillEyeInvisible/>)}
+                <label
+                  htmlFor="loginshowC"
+                  className="loginlabel"
+                  onClick={toggleConfirmPasswordVisibility}
+                >
+                  <button className=" mx-[-19px]" id="passBtn" type="button">
+                    {showConfirmPassword ? (
+                      <AiFillEye />
+                    ) : (
+                      <AiFillEyeInvisible />
+                    )}
                   </button>
                 </label>
               </div>
               <br />
+              {otps ? (
+                <div>
+                  <input
+                    type="text"
+                    id="loginuseri"
+                    name="otp"
+                    placeholder="Enter OTP"
+                    className="logininput text-black px-1 mt-[-10px] mb-1 h-8 w-[15vw] rounded-lg"
+                    onChange={(e) => setOtp(e.target.value)}
+                  />
+                </div>
+              ) : null}
               <div id="loginbut">
-                <button type="submit" className=" mx-[55px] bg-[#002D74] w-[6vw] rounded-xl text-white py-2 hover:scale-105 duration-300 btn-lg" id="loginbutton">Signup</button>
+                {clicked && (
+                  <button
+                    type="button"
+                    className=" mx-[55px] bg-[#002D74] w-[6vw] rounded-xl text-white py-2 hover:scale-105 duration-300 btn-lg"
+                    onClick={signUp}
+                    id="loginbutton"
+                  >
+                    Signup
+                  </button>
+                )}
+                {!clicked && (
+                  <button
+                    type="button"
+                    className=" mx-[55px] bg-[#002D74] w-[6vw] rounded-xl text-white py-2 hover:scale-105 duration-300 btn-lg"
+                    onClick={handleSubmit}
+                    id="loginbutton"
+                  >
+                    SubmitOTP
+                  </button>
+                )}
               </div>
               <p id="loginmessage"></p>
             </form>

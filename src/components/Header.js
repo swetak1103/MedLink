@@ -7,7 +7,7 @@ const Header = () => {
   const navigate = useNavigate();
   const loginToken = localStorage.getItem("logintoken");
   let sub;
- if(loginToken) sub=jwtDecode(loginToken)["sub"];
+  if (loginToken) sub = jwtDecode(loginToken)["sub"];
   console.log(loginToken);
   const handleClick = (e) => {
     localStorage.removeItem("logintoken");
@@ -49,15 +49,19 @@ const Header = () => {
         </button>
       )}
       {loginToken && (
-        <ul style={{display:"flex",alignItems:"center"}}>
-        {sub}
-        <button
-          style={{ backgroundColor: "#046585",padding:"10px",marginLeft:"9px" }}
-          className="btn1"
-          onClick={handleClick}
-        >
-          SignOut
-        </button>
+        <ul style={{ display: "flex", alignItems: "center" }}>
+          {sub}
+          <button
+            style={{
+              backgroundColor: "#046585",
+              padding: "10px",
+              marginLeft: "9px",
+            }}
+            className="btn1"
+            onClick={handleClick}
+          >
+            SignOut
+          </button>
         </ul>
       )}
     </nav>
