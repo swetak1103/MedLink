@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import "../styleElements/appoitment.css";
 import { useNavigate } from 'react-router-dom';
+import { jwtDecode } from 'jwt-decode';
 
 const Appointments = () => {
   const [formData, setFormData] = useState({
@@ -30,10 +31,34 @@ const Appointments = () => {
   }, [navigate]);
 
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    console.log(formData);
-    //TODO: Add your logic to submit the form data
+    try {
+      const {id}=jwtDecode(localStorage.getItem("logintoken"));
+      const data = {...formData,patientId:id};
+      console.log(data);
+      const response = await fetch("/appointment", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        const data=await response.json();
+        console.log(data);
+      } else {
+        // Handle error response
+        const errorData = await response.json();
+        console.error("Error:", errorData.message);
+        alert("An error occurred. Please try again later.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("An error occurred. Please try again later.");
+    }
+    
   };
 
   return (

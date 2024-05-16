@@ -1,0 +1,16 @@
+.patient-list {
+    margin-bottom: 20px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .list-item {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .list-item:last-child {
+    border-bottom: none; /* Remove border for the last item */
+  }
+  
