@@ -12,7 +12,6 @@ const Appointments = () => {
     time: '',
     message: ''
   });
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -58,7 +57,7 @@ const Appointments = () => {
       console.error("Error:", error);
       alert("An error occurred. Please try again later.");
     }
-    
+navigate("/");    
   };
 
   return (
@@ -137,7 +136,7 @@ const Appointments = () => {
             ></textarea>
           </div>
           <div>
-            <button type="submit" style={{ marginLeft: '500px', width: '100px' }}>Submit</button>
+            <button type="submit" style={{ marginLeft: '500px', width: '100px' }} onClick={handleSubmit}>Submit</button>
           </div>
         </form>
       </div>
