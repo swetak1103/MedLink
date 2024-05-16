@@ -21,17 +21,15 @@ const BedsAvailability = () => {
   const handleStateChange = (event) => {
     const newState = event.target.value;
     setSelectedState(newState);
-    setSelectedCity('');
+    setSelectedCity(cityData[newState][0]);
   };
 
   const handleCityChange = (event) => {
     const newCity = event.target.value;
     setSelectedCity(newCity);
   };
-  // let url="/hospital/beds/"
+
   const handleSubmit = () => {
-    // useH
-    // url+=selectedCity;
   };
 
   return (
@@ -55,7 +53,7 @@ const BedsAvailability = () => {
       <Link to={`/hospital/beds/${selectedCity}`}>
         <button className="btn btn-primary btn-md" style={{ padding: '8px 15px', margin: '25px 190px', color: 'white', textDecoration: 'none' }} onClick={handleSubmit}>
           Submit
-        </button>
+      </button>
       </Link>
       </div>
     </div>

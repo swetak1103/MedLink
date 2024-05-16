@@ -22,15 +22,8 @@ const Login = () => {
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
- const handlerefresh =()=>{
-  useEffect(() => {
-      window.location.reload(); // Refresh the page when the component mounts
-    },[]); /// Empty dependency array ensures this effect runs only once after initial render
-    
- }
-  useEffect(()=>{
-    ()=>handlerefresh();
-  },[])
+
+
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
@@ -88,9 +81,9 @@ const handleSubmit = async (e) => {
   <div>
   <section class="bg-gray-50 h-[80vh] flex items-center justify-center">
   <div class="bg-gray-100 flex rounded-2xl shadow-lg max-w-3xl p-5 items-center">
-    <div class="md:w-[24vw] px-8 md:px-16">
+    <div class="md:w-[25vw] px-8 md:px-16">
       <h2 class="font-bold mx-[70px] text-3xl text-[#002D74]">Login</h2>
-      <p class="text-xs mt-4 text-[#002D74]">If you are already a member, easily log in</p>
+      <p class="text-sm mt-4 text-[#002D74]">If you are already a member, easily log in</p>
       <form action="" class="flex flex-col gap-4" onSubmit={handleSubmit}>
         <input class="ml-[-10px]
         px-1 text-black
@@ -100,7 +93,7 @@ const handleSubmit = async (e) => {
          name="email" placeholder="Email"/>
         <div class="relative">
           <input
-           class="ml-[-10px] text-sm h-8 p-2 rounded-xl border w-[16vw]"
+           class="ml-[-10px] text-black text-sm h-8 p-2 rounded-xl border w-[16vw]"
             type={
               visible ? ("text") :("password")
             } 

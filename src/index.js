@@ -6,7 +6,6 @@ import Loader from "./components/Loader";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import HospitalPage from "./components/HospitalPage";
-import { ToastContainer } from 'react-toastify';
 import { Toaster } from 'react-hot-toast'
 
 
@@ -113,7 +112,6 @@ const appRouter = createBrowserRouter([
           </Suspense>
         ),
       },
-      
     ],
   },
 ]);
