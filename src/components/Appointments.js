@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import "../styleElements/appoitment.css";
 import { useNavigate } from 'react-router-dom';
-import { jwtDecode } from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode'; // Ensure this import is correct
 
 const Appointments = () => {
   const [formData, setFormData] = useState({
@@ -12,6 +11,7 @@ const Appointments = () => {
     time: '',
     message: ''
   });
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -29,44 +29,46 @@ const Appointments = () => {
     }
   }, [navigate]);
 
-
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const {id}=jwtDecode(localStorage.getItem("logintoken"));
-      const data = {...formData,patientId:id};
-      console.log(data);
-      const response = await fetch("/appointment", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (response.ok) {
-        const data=await response.json();
+      const token = localStorage.getItem('logintoken');
+      if (token) {
+        const { id } = jwtDecode(token);
+        const data = { ...formData, patientId: id };
         console.log(data);
-      } else {
-        // Handle error response
-        const errorData = await response.json();
-        console.error("Error:", errorData.message);
-        alert("An error occurred. Please try again later.");
+        const response = await fetch('/appointment', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+
+        if (response.ok) {
+          const responseData = await response.json();
+          console.log(responseData);
+        } else {
+          // Handle error response
+          const errorData = await response.json();
+          console.error('Error:', errorData.message);
+          alert('An error occurred. Please try again later.');
+        }
       }
     } catch (error) {
-      console.error("Error:", error);
-      alert("An error occurred. Please try again later.");
+      console.error('Error:', error);
+      alert('An error occurred. Please try again later.');
     }
-navigate("/");    
+    navigate('/');
   };
 
   return (
-    <div className="parent">
-      <div className="container">
-        <h1>Book an Appointment</h1>
-        <form id="appointmentForm">
-          <div className="form-group">a
-            <label htmlFor="fullName">Full Name:</label>
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="w-full max-w-lg bg-white shadow-md rounded-lg p-8">
+        <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Book an Appointment</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-4">
+            <label htmlFor="fullName" className="block text-gray-700">Full Name</label>
             <input
               type="text"
               id="fullName"
@@ -74,11 +76,11 @@ navigate("/");
               required
               value={formData.fullName}
               onChange={handleChange}
-              style={{ color: 'black' }}
+              className="mt-1 p-2 w-full border rounded-lg focus:outline-none focus:ring focus:border-blue-300 text-gray-900"
             />
           </div>
-          <div className="form-group">
-            <label htmlFor="email">Email:</label>
+          <div className="mb-4">
+            <label htmlFor="email" className="block text-gray-700">Email</label>
             <input
               type="email"
               id="email"
@@ -86,11 +88,11 @@ navigate("/");
               required
               value={formData.email}
               onChange={handleChange}
-              style={{ color: 'black' }}
+              className="mt-1 p-2 w-full border rounded-lg focus:outline-none focus:ring focus:border-blue-300 text-gray-900"
             />
           </div>
-          <div className="form-group">
-            <label htmlFor="phone">Phone:</label>
+          <div className="mb-4">
+            <label htmlFor="phone" className="block text-gray-700">Phone</label>
             <input
               type="tel"
               id="phone"
@@ -98,11 +100,11 @@ navigate("/");
               required
               value={formData.phone}
               onChange={handleChange}
-              style={{ color: 'black' }}
+              className="mt-1 p-2 w-full border rounded-lg focus:outline-none focus:ring focus:border-blue-300 text-gray-900"
             />
           </div>
-          <div className="form-group">
-            <label htmlFor="date">Preferred Date:</label>
+          <div className="mb-4">
+            <label htmlFor="date" className="block text-gray-700">Preferred Date</label>
             <input
               type="date"
               id="date"
@@ -110,11 +112,11 @@ navigate("/");
               required
               value={formData.date}
               onChange={handleChange}
-              style={{ color: 'black' }}
+              className="mt-1 p-2 w-full border rounded-lg focus:outline-none focus:ring focus:border-blue-300 text-gray-900"
             />
           </div>
-          <div className="form-group">
-            <label htmlFor="time">Preferred Time:</label>
+          <div className="mb-4">
+            <label htmlFor="time" className="block text-gray-700">Preferred Time</label>
             <input
               type="time"
               id="time"
@@ -122,21 +124,27 @@ navigate("/");
               required
               value={formData.time}
               onChange={handleChange}
-              style={{ color: 'black' }}
+              className="mt-1 p-2 w-full border rounded-lg focus:outline-none focus:ring focus:border-blue-300 text-gray-900"
             />
           </div>
-          <div className="form-group">
-            <label htmlFor="message">Additional Information:</label>
+          <div className="mb-4">
+            <label htmlFor="message" className="block text-gray-700">Additional Information</label>
             <textarea
               id="message"
               name="message"
               rows="4"
               value={formData.message}
               onChange={handleChange}
+              className="mt-1 p-2 w-full border rounded-lg focus:outline-none focus:ring focus:border-blue-300 text-gray-900"
             ></textarea>
           </div>
-          <div>
-            <button type="submit" style={{ marginLeft: '500px', width: '100px' }} onClick={handleSubmit}>Submit</button>
+          <div className="flex justify-center">
+            <button
+              type="submit"
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300"
+            >
+              Submit
+            </button>
           </div>
         </form>
       </div>
