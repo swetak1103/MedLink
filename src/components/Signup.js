@@ -16,6 +16,7 @@ const Signup = () => {
   const [otps, setOtps] = useState(false);
   const [otp, setOtp] = useState("");
   const [clicked, setClicked] = useState(true);
+
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -103,7 +104,7 @@ const Signup = () => {
         body: JSON.stringify(data),
       });
       const responseJson = await response.json();
-      if (responseJson.status != 200) {
+      if (responseJson.status !== 200) {
         toast.error(responseJson.message);
       } else {
         setClicked(false);
@@ -117,141 +118,120 @@ const Signup = () => {
   };
 
   return (
-    <div>
-      <section className="bg-gray-50 h-[80vh] flex items-center justify-center">
-        <div className="bg-gray-100 flex rounded-2xl shadow-lg max-w-3xl p-5 items-center">
-          <div className="md:w-[55vw] px-8 md:px-16">
-            <h2 className="font-bold mx-[70px] text-3xl text-[#002D74]">
-              Signup
-            </h2>
-            <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-              <br></br>
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="bg-white flex rounded-2xl shadow-lg max-w-3xl p-5 items-center">
+        <div className="w-full md:w-1/2 p-8">
+          <h2 className="font-bold text-3xl text-[#046585] text-center">Signup</h2>
+          <form className="flex flex-col gap-4 mt-8" onSubmit={handleSubmit}>
+            <input
+              type="text"
+              id="firstname"
+              name="firstname"
+              placeholder="First Name"
+              className="p-2 rounded-xl border w-full text-black"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              required
+            />
+            <input
+              type="text"
+              id="lastname"
+              name="lastname"
+              placeholder="Last Name"
+              className="p-2 rounded-xl border w-full text-black"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              required
+            />
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Email Id"
+              className="p-2 rounded-xl border w-full text-black"
+              value={email}
+              onChange={handleEmailChange}
+              required
+            />
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                id="password"
+                placeholder="Password"
+                className="p-2 rounded-xl border w-full text-black"
+                value={password}
+                onChange={handlePasswordChange}
+                required
+              />
+              <button
+                type="button"
+                onClick={togglePasswordVisibility}
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600"
+              >
+                {showPassword ? <AiFillEye /> : <AiFillEyeInvisible />}
+              </button>
+            </div>
+            <div className="relative">
+              <input
+                type={showConfirmPassword ? "text" : "password"}
+                id="confirmPassword"
+                placeholder="Confirm Password"
+                className="p-2 rounded-xl border w-full text-black"
+                name="confirmPassword"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+              />
+              <button
+                type="button"
+                onClick={toggleConfirmPasswordVisibility}
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600"
+              >
+                {showConfirmPassword ? <AiFillEye /> : <AiFillEyeInvisible />}
+              </button>
+            </div>
+            {otps && (
               <input
                 type="text"
-                id="firstname"
-                name="firstname"
-                placeholder="First Name"
-                className="logininput 
-                text-black px-1
-                h-8 mb-2 w-[15vw] rounded-lg"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
+                id="otp"
+                name="otp"
+                placeholder="Enter OTP"
+                className="p-2 rounded-xl border w-full text-black"
+                onChange={(e) => setOtp(e.target.value)}
+                required
               />
-              <input
-                type="text"
-                id="lastname"
-                name="lastname"
-                placeholder="Last Name"
-                className="logininput 
-                text-black
-                px-1
-                mb-2 h-8  w-[15vw] rounded-lg"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-              />
-              <input
-                type="text"
-                name="email"
-                id="loginuseri"
-                placeholder="Email Id"
-                className="logininput px-1 mb-2  h-8
-                w-[15vw] text-black rounded-lg"
-                value={email}
-                onChange={handleEmailChange}
-              />
-              <div className="loginlabel">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  name="password"
-                  id="loginpassword"
-                  placeholder="Password"
-                  className="logininput
-                  w-[15vw] h-8 mb-2 px-1
-               text-black rounded-lg"
-                  value={password}
-                  onChange={handlePasswordChange}
-                />
-                <label
-                  htmlFor="loginshow"
-                  className="loginlabel mt-[-100px]"
-                  onClick={togglePasswordVisibility}
+            )}
+            <div className="flex justify-center mt-4">
+              {clicked && (
+                <button
+                  type="button"
+                  className="bg-[#046585] w-[6vw] rounded-xl text-white py-2 hover:bg-[#034b60] duration-300"
+                  onClick={signUp}
                 >
-                  <button
-                    className="mt-[-100px] mx-[-19px]"
-                    id="passBtn"
-                    type="button"
-                  >
-                    {showPassword ? <AiFillEye /> : <AiFillEyeInvisible />}
-                  </button>
-                </label>
-              </div>
-              <div className="loginlabel">
-                <input
-                  type={showConfirmPassword ? "text" : "password"}
-                  id="loginCpassword"
-                  placeholder="Confirm Password"
-                  className="logininput w-[15vw] text-black rounded-lg px-1 h-8"
-                  name="confirmpassword"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                />
-                <label
-                  htmlFor="loginshowC"
-                  className="loginlabel"
-                  onClick={toggleConfirmPasswordVisibility}
+                  Signup
+                </button>
+              )}
+              {!clicked && (
+                <button
+                  type="button"
+                  className="bg-[#046585] w-[6vw] rounded-xl text-white py-2 hover:bg-[#034b60] duration-300"
+                  onClick={handleSubmit}
                 >
-                  <button className=" mx-[-19px]" id="passBtn" type="button">
-                    {showConfirmPassword ? (
-                      <AiFillEye />
-                    ) : (
-                      <AiFillEyeInvisible />
-                    )}
-                  </button>
-                </label>
-              </div>
-              <br />
-              {otps ? (
-                <div>
-                  <input
-                    type="text"
-                    id="loginuseri"
-                    name="otp"
-                    placeholder="Enter OTP"
-                    className="logininput text-black px-1 mt-[-10px] mb-1 h-8 w-[15vw] rounded-lg"
-                    onChange={(e) => setOtp(e.target.value)}
-                  />
-                </div>
-              ) : null}
-              <div id="loginbut">
-                {clicked && (
-                  <button
-                    type="button"
-                    className=" mx-[55px] bg-[#002D74] w-[6vw] rounded-xl text-white py-2 hover:scale-105 duration-300 btn-lg"
-                    onClick={signUp}
-                    id="loginbutton"
-                  >
-                    Signup
-                  </button>
-                )}
-                {!clicked && (
-                  <button
-                    type="button"
-                    className=" mx-[55px] bg-[#002D74] w-[6vw] rounded-xl text-white py-2 hover:scale-105 duration-300 btn-lg"
-                    onClick={handleSubmit}
-                    id="loginbutton"
-                  >
-                    SubmitOTP
-                  </button>
-                )}
-              </div>
-              <p id="loginmessage"></p>
-            </form>
-          </div>
-          <div id="loginright">
-            <img src={doctor} alt="Login" className="loginimage" />
-          </div>
+                  Submit OTP
+                </button>
+              )}
+            </div>
+          </form>
         </div>
-      </section>
+        <div className="hidden md:block md:w-1/2 h-full">
+          <img
+            className="rounded-2xl w-full h-full object-cover"
+            src={doctor}
+            alt="Signup"
+          />
+        </div>
+      </div>
     </div>
   );
 };
